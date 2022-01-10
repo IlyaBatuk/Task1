@@ -1,6 +1,5 @@
 package entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -13,7 +12,7 @@ public class Student {
     private String name;
 
     public Student(String name){
-        rating = new HashMap<>();
+        this.rating = new HashMap<>();
         this.name = name;
     }
 
