@@ -47,7 +47,6 @@ public class StudentService {
     public void printStudentsAndSubjects(List<Student> students) {
         List<String> subjects = new LinkedList<>();
 
-
         students.stream().map(Student::getRating)
                 .map(Map::keySet).forEach(subjects::addAll);
         subjects = subjects.stream().distinct().collect(Collectors.toList());
