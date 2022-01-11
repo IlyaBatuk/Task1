@@ -2,6 +2,7 @@ package service;
 
 import entity.Student;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -62,5 +63,22 @@ public class StudentService {
             System.out.println(forPrintStudentsAndSubjects);
 
         }
+    }
+
+    public void findBestMatchingPerson(List<Student> students, String subject, Integer rating) {
+        if (students.stream().anyMatch(s -> s.getRating().containsKey(subject))) {
+            if (students.stream().anyMatch(s -> s.getRating().get(subject) >= rating)) {
+                System.out.print(subject + " : ");
+                List<String> studentsName = students.stream().filter(s -> s.getRating().get(subject) >= rating).map(Student::getName).toList();
+                System.out.println(studentsName);
+            } else {
+                students.stream().max(Comparator.comparing(s -> s.getRating().get(subject)))
+                        .ifPresent(st -> System.out.println(subject + " : " + st.getName()));
+
+            }
+        } else {
+            System.out.println("Subject not found");
+        }
+
     }
 }
