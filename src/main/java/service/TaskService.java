@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskService {
 
@@ -28,5 +29,9 @@ public class TaskService {
                 LocalDate.of(2015, Month.JULY, 5)).addTag("ddd").addTag("books").addTag("reading").build();
 
         return Arrays.asList(task1, task2, task3, task4, task5);
+    }
+
+    public List<Task> findFirst5TasksWithTypeReading(List<Task> tasks){
+        return tasks.stream().filter(t -> t.getType().equals(TaskType.READING)).limit(5).toList();
     }
 }
