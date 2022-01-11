@@ -38,19 +38,7 @@ public class TaskService {
                 .sorted(Comparator.comparing(Task::getCreatedOn)).map(Task::getTitle).toList();
     }
 
-    public Map<String, List<Task>> groupTasksById(List<Task> tasks) {
-        return tasks.stream().collect(Collectors.groupingBy(Task::getId));
-    }
-
-    public Map<TaskType, List<Task>> groupTasksByType(List<Task> tasks) {
-        return tasks.stream().collect(Collectors.groupingBy(Task::getType));
-    }
-
-    public Map<LocalDate, List<Task>> groupTasksByCreation(List<Task> tasks) {
-        return tasks.stream().collect(Collectors.groupingBy(Task::getCreatedOn));
-    }
-
-    public Map<Boolean, List<Task>> groupTasksByIsDone(List<Task> tasks) {
-        return tasks.stream().collect(Collectors.groupingBy(Task::isDone));
+    public Map<Object, List<Task>> groupTasksById(List<Task> tasks) {
+        return tasks.stream().collect(Collectors.groupingBy(s -> Arrays.asList(s.getId(), s.getType(), s.getCreatedOn(), s.isDone())));
     }
 }
