@@ -1,19 +1,20 @@
 package service;
 
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 public class CountRepeatCharacter {
     public void countMaxRepeatChar(String str) {
         str.chars()
                 .filter(Character::isLetterOrDigit)
                 .mapToObj(character -> (char) character)
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .collect(groupingBy(identity(), counting()))
                 .entrySet()
                 .stream()
-                .max(Map.Entry.comparingByValue())
+                .max(comparingByValue())
                 .ifPresentOrElse(entry -> System.out.println("[\"" + entry.getKey() + "\", " + entry.getValue() + "]"),
-                                () -> System.out.println("String is empty"));
+                        () -> System.out.println("String is empty"));
     }
 }
