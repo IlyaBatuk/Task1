@@ -16,7 +16,6 @@ public class StudentService {
     }
 
     public void printStudentsAndSubjects(List<Student> students) {
-
         students.stream()
                 .map(Student::getRating)
                 .flatMap(stringIntegerMap -> stringIntegerMap.keySet().stream())
