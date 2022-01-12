@@ -33,7 +33,11 @@ public class TaskService {
     }
 
     public List<String> findFirst5TasksWithTypeReading(List<Task> tasks){
-        return tasks.stream().filter(t -> t.getType().equals(TaskType.READING)).limit(5)
-                .sorted(Comparator.comparing(Task::getCreatedOn)).map(Task::getTitle).toList();
+        return tasks.stream()
+                .filter(t -> t.getType().equals(TaskType.READING))
+                .limit(5)
+                .sorted(Comparator.comparing(Task::getCreatedOn))
+                .map(Task::getTitle)
+                .toList();
     }
 }
