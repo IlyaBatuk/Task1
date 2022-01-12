@@ -39,7 +39,6 @@ public class StudentService {
         return students;
     }
 
-
     public Double averageRatingForSubject(List<Student> students, String subjectName) {
         return students.stream().map(Student::getRating).mapToDouble(d -> d.get(subjectName))
                 .average().orElseThrow();
@@ -66,15 +65,17 @@ public class StudentService {
     }
 
     public void findBestMatchingPerson(List<Student> students, String subject, Integer rating) {
-        if (students.stream().anyMatch(s -> s.getRating().containsKey(subject))) {
-            if (students.stream().anyMatch(s -> s.getRating().get(subject) >= rating)) {
+        if (students.stream().anyMatch(student -> student.getRating().containsKey(subject))) {
+            if (students.stream().anyMatch(student -> student.getRating().get(subject) >= rating)) {
                 System.out.print(subject + " : ");
-                List<String> studentsName = students.stream().filter(s -> s.getRating().get(subject) >= rating).map(Student::getName).toList();
-                System.out.println(studentsName);
+                students.stream()
+                        .filter(student -> student.getRating().get(subject) >= rating)
+                        .map(Student::getName)
+                        .forEach(name -> System.out.print(name + "; "));
             } else {
-                students.stream().max(Comparator.comparing(s -> s.getRating().get(subject)))
-                        .ifPresent(st -> System.out.println(subject + " : " + st.getName()));
-
+                students.stream()
+                        .max(Comparator.comparing(student -> student.getRating().get(subject)))
+                        .ifPresent(student -> System.out.println(subject + " : " + student.getName()));
             }
         } else {
             System.out.println("Subject not found");
