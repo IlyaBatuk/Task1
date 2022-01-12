@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class StudentService {
 
-
     public Double averageRatingForSubject(List<Student> students, String subjectName) {
         return students.stream()
                 .map(Student::getRating)
