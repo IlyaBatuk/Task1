@@ -40,7 +40,7 @@ public class StudentService {
     public Double averageRatingForSubject(List<Student> students, String subjectName) {
         return students.stream()
                 .map(Student::getRating)
-                .mapToDouble(d -> d.get(subjectName))
+                .mapToDouble(rating -> rating.get(subjectName))
                 .average()
                 .orElseThrow(() -> new RuntimeException("Subject not found"));
     }
@@ -53,7 +53,10 @@ public class StudentService {
                 .peek(subject -> System.out.print("\n" + subject + " = "))
                 .forEach(subject -> students.stream()
                         .filter(subj -> Objects.nonNull(subj.getRating().get(subject)))
-                        .forEach(student -> System.out.print(student.getName() + ": "
-                                + student.getRating().get(subject) + "; ")));
+                        .forEach(student -> printStudentForMethod(student.getName(), student.getRating().get(subject))));
+    }
+
+    private void printStudentForMethod(String name, String subject){
+        System.out.print(name + ": " + subject + "; ");
     }
 }
