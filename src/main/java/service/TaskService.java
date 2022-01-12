@@ -38,7 +38,7 @@ public class TaskService {
                 .sorted(Comparator.comparing(Task::getCreatedOn)).map(Task::getTitle).toList();
     }
 
-    public Map<Object, List<Task>> groupTasksById(List<Task> tasks) {
+    public Map<Object, List<Task>> groupTasksAny4Parameters(List<Task> tasks) {
         return tasks.stream().collect(Collectors.groupingBy(s -> Arrays.asList(s.getId(), s.getType(), s.getCreatedOn(), s.isDone())));
     }
 }
