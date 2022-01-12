@@ -40,7 +40,6 @@ public class Task {
         public Task build() {
             return new Task(this);
         }
-
     }
 
     private Task(Builder builder) {

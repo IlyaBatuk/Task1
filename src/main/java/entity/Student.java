@@ -16,8 +16,7 @@ public class Student {
         this.name = name;
     }
 
-    public Student rate(String subject, Integer rate){
+    public void rate(String subject, Integer rate){
         rating.put(subject, rate);
-        return this;
     }
 }
