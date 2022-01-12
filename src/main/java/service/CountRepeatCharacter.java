@@ -13,8 +13,7 @@ public class CountRepeatCharacter {
                 .entrySet()
                 .stream()
                 .max(Map.Entry.comparingByValue())
-                .ifPresentOrElse(entry -> System.out.println("[\"" + entry.getKey() + "\", "
-                                + entry.getValue() + "]"),
-                        () -> System.out.println("String is empty"));
+                .ifPresentOrElse(entry -> System.out.println("[\"" + entry.getKey() + "\", " + entry.getValue() + "]"),
+                                () -> System.out.println("String is empty"));
     }
 }
