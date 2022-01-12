@@ -2,6 +2,7 @@ package service;
 
 import entity.Student;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,6 @@ import java.util.Objects;
 public class StudentService {
 
     public List<Student> initListStudents() {
-        List<Student> students = new LinkedList<>();
 
         Student student1 = new Student("Bob");
         Student student2 = new Student("Maria");
@@ -28,13 +28,7 @@ public class StudentService {
         student5.rate("Math", 5);
         student5.rate("Physics", 5);
 
-        students.add(student1);
-        students.add(student2);
-        students.add(student3);
-        students.add(student4);
-        students.add(student5);
-
-        return students;
+        return Arrays.asList(student1, student2, student3, student4, student5);
     }
 
     public Double averageRatingForSubject(List<Student> students, String subjectName) {
